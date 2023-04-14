@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import movies from "../data/movieList";
 import { useState } from "react";
-import MovieDetails from "./MovieDetails";
 
 const SearchFormStyled = styled.form`
   display: flex;
@@ -20,7 +19,7 @@ const SearchFormStyled = styled.form`
   }
 `;
 
-const SearchResult = styled.div`
+const SearchResultTitle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,6 +33,14 @@ const SearchResult = styled.div`
     font-weight: bold;
   }
 `;
+
+const GenreStyled = styled.select`
+  margin-top: 10px;
+  height: 5vh;
+  padding: 5px;
+  border-radius: 5px;
+`;
+
 const SearchMovie = () => {
   const [movie, setMovie] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -53,19 +60,25 @@ const SearchMovie = () => {
       <SearchFormStyled onSubmit={searchData}>
         <input
           type="text"
+          placeholder="Enter your movie name"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button type="submit">Search</button>
       </SearchFormStyled>
       {movie && (
-        <SearchResult>
+        <SearchResultTitle>
           <p className="title">{movie.title}</p>
           <p>{movie.director}</p>
           <p>Year: {movie.year}</p>
           <p>⭐️ {movie.rate}</p>
-        </SearchResult>
+        </SearchResultTitle>
       )}
+      <GenreStyled>
+        {movies.map((movie) => {
+          return <option value="">{movie.genre}</option>;
+        })}
+      </GenreStyled>
     </>
   );
 };

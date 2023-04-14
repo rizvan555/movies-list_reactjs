@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import movies from "./data/movieList";
 import { useState } from "react";
 import MovieDetails from "./components/MovieDetails";
 import styled from "styled-components";
 import SearchMovie from "./components/SearchMovie";
+import AddNewMovie from "./components/AddNewMovie";
 
 const AppStyled = styled.div`
   display: flex;
@@ -11,6 +12,17 @@ const AppStyled = styled.div`
   flex-direction: column;
   padding: 10px;
   background-color: rgb(0, 0, 0, 0.8);
+  .addMovie {
+    color: #fff;
+    text-decoration: none;
+    background-color: tomato;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    :hover {
+      font-weight: bold;
+    }
+  }
 `;
 
 const HeaderStyled = styled.header`
@@ -88,23 +100,39 @@ function App() {
 
   return (
     <AppStyled>
-      <SearchMovie />
-      <HeaderStyled>
-        <header>
-          {sortButtons.map((sortButton, index) => {
-            return (
-              <Link
-                to={`/sort/${sortButton}`}
-                onClick={getSortingFunction(sortButton)}
-                key={index}
-              >
-                {sortButton}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <SearchMovie />
+              <Link className="addMovie" to="/addNewMovie">
+                Add New Movie
               </Link>
-            );
-          })}
-        </header>
-      </HeaderStyled>
-      <MovieDetails />
+              <HeaderStyled>
+                <header>
+                  {sortButtons.map((sortButton, index) => {
+                    return (
+                      <Link
+                        to={`/sort/${sortButton}`}
+                        onClick={getSortingFunction(sortButton)}
+                        key={index}
+                      >
+                        {sortButton}
+                      </Link>
+                    );
+                  })}
+                </header>
+              </HeaderStyled>
+              <MovieDetails />
+            </>
+          }
+        />
+        <Route
+          path="/addNewMovie"
+          element={<AddNewMovie setData={setData} />}
+        />
+      </Routes>
     </AppStyled>
   );
 }
