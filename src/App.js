@@ -28,7 +28,7 @@ const HeaderStyled = styled.header`
     color: #fff;
     text-decoration: none;
     margin-left: 10px;
-    width: 9vw;
+    width: 10vw;
     text-align: center;
     :hover {
       font-weight: bold;
