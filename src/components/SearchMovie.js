@@ -3,7 +3,22 @@ import movies from "../data/movieList";
 import { useState } from "react";
 import MovieDetails from "./MovieDetails";
 
-const SearchFormStyled = styled.form``;
+const SearchFormStyled = styled.form`
+  display: flex;
+  gap: 20px;
+  input {
+    width: 50vw;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+  }
+  button {
+    width: 15vw;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+  }
+`;
 
 const SearchResult = styled.div`
   display: flex;
