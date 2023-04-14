@@ -1,14 +1,46 @@
-import "./App.css";
 import { Link } from "react-router-dom";
 import movies from "./data/movieList";
 import { useState } from "react";
 import MovieDetails from "./components/MovieDetails";
+import styled from "styled-components";
+
+const AppStyled = styled.div`
+  background-color: rgb(0, 0, 0, 0.8);
+`;
+
+const HeaderStyled = styled.header`
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  header {
+    display: flex;
+    gap: 5vw;
+  }
+  header a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+    width: 9vw;
+    text-align: center;
+    :hover {
+      font-weight: bold;
+    }
+  }
+`;
 
 function App() {
   const [data, setData] = useState([]);
   const [sortButtons, setSortButtons] = useState([
-    "Sort by Date Ascending",
-    "Sort by Date Descending",
+    "Date Ascending",
+    "Date Descending",
     "Best Rate",
     "A-Z",
     "Z-A",
@@ -36,9 +68,9 @@ function App() {
   };
 
   const getSortingFunction = (sortButton) => {
-    if (sortButton === "Sort by Date Ascending") {
+    if (sortButton === "Date Ascending") {
       return sortAscending;
-    } else if (sortButton === "Sort by Date Descending") {
+    } else if (sortButton === "Date Descending") {
       return sortDescending;
     } else if (sortButton === "Best Rate") {
       return bestRate;
@@ -50,23 +82,24 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header>
-        {sortButtons.map((sortButton, index) => {
-          return (
-            <Link
-              to={`/sort/${sortButton}`}
-              onClick={getSortingFunction(sortButton)}
-              key={index}
-            >
-              {sortButton}
-            </Link>
-          );
-        })}
-      </header>
-
+    <AppStyled>
+      <HeaderStyled>
+        <header>
+          {sortButtons.map((sortButton, index) => {
+            return (
+              <Link
+                to={`/sort/${sortButton}`}
+                onClick={getSortingFunction(sortButton)}
+                key={index}
+              >
+                {sortButton}
+              </Link>
+            );
+          })}
+        </header>
+      </HeaderStyled>
       <MovieDetails />
-    </div>
+    </AppStyled>
   );
 }
 
