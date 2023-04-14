@@ -3,8 +3,13 @@ import movies from "./data/movieList";
 import { useState } from "react";
 import MovieDetails from "./components/MovieDetails";
 import styled from "styled-components";
+import SearchMovie from "./components/SearchMovie";
 
 const AppStyled = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
   background-color: rgb(0, 0, 0, 0.8);
 `;
 
@@ -83,6 +88,7 @@ function App() {
 
   return (
     <AppStyled>
+      <SearchMovie />
       <HeaderStyled>
         <header>
           {sortButtons.map((sortButton, index) => {

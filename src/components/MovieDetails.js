@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import movies from "../data/movieList";
+import { useState } from "react";
 
 const MovieStyled = styled.ul`
   display: flex;
@@ -37,6 +38,7 @@ const MovieStyled = styled.ul`
 `;
 
 const MovieDetails = () => {
+
   return (
     <MovieStyled>
       {movies.map((movie, title) => {
