@@ -1,5 +1,4 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import movies from "./data/movieList";
 import { useEffect, useState } from "react";
@@ -18,41 +17,34 @@ function App() {
     const result = movies.sort((a, b) => a.year - b.year);
     setData([result]);
   };
-
   const sortDescending = () => {
     const result = movies.sort((a, b) => b.year - a.year);
     setData([result]);
   };
-
   const bestRate = () => {
     const result = movies.sort((a, b) => b.rate - a.rate);
     setData([result]);
   };
-
   const atoz = () => {
     const result = movies.sort((a, b) => a.title.localeCompare(b.title));
     setData([result]);
   };
-
   const ztoa = () => {
     const result = movies.sort((a, b) => b.title.localeCompare(a.title));
     setData([result]);
   };
 
-  const getSortingFunction = (sortButtonText) => {
-    switch (sortButtonText) {
-      case "Sort by Date Ascending":
-        return sortAscending;
-      case "Sort by Date Descending":
-        return sortDescending;
-      case "Best Rate":
-        return bestRate;
-      case "A-Z":
-        return atoz;
-      case "Z-A":
-        return ztoa;
-      default:
-        return null;
+  const getSortingFunction = (sortButton) => {
+    if (sortButton === "Sort by Date Ascending") {
+      return sortAscending;
+    } else if (sortButton === "Sort by Date Descending") {
+      return sortDescending;
+    } else if (sortButton === "Best Rate") {
+      return bestRate;
+    } else if (sortButton === "A-Z") {
+      return atoz;
+    } else if (sortButton === "Z-A") {
+      return ztoa;
     }
   };
 
