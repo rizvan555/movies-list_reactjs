@@ -1,7 +1,8 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 import movies from "./data/movieList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const [data, setData] = useState([]);
@@ -52,11 +53,10 @@ function App() {
     <div className="App">
       <header>
         {sortButtons.map((sortButton, index) => {
-          const onClickFunction = getSortingFunction(sortButton);
           return (
             <Link
               to={`/sort/${sortButton}`}
-              onClick={() => onClickFunction()}
+              onClick={getSortingFunction(sortButton)}
               key={index}
             >
               {sortButton}
@@ -65,24 +65,7 @@ function App() {
         })}
       </header>
 
-      <ul>
-        {movies.map((movie, title) => {
-          return (
-            <div className="movie-box" key={title}>
-              <li>{movie.title}</li>
-              <li>{movie.year}</li>
-              <li>{movie.director}</li>
-              <li>{movie.duration}</li>
-              <li>{movie.rate}</li>
-              <li className="genre">
-                {movie.genre.map((genre, index) => (
-                  <p key={index}>{genre}</p>
-                ))}
-              </li>
-            </div>
-          );
-        })}
-      </ul>
+      <MovieDetails />
     </div>
   );
 }
