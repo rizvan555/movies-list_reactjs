@@ -49,7 +49,8 @@ const AddNewMovie = ({ setData }) => {
   });
   const addNewMovie = (e) => {
     e.preventDefault();
-    const updateMovieList = [...movies, newMovie];
+    const newMovieId = movies.length + 1;
+    const updateMovieList = [...movies, { ...newMovie, id: newMovieId }];
     setData(updateMovieList);
     setNewMovie({
       title: "",

@@ -33,7 +33,7 @@ const HeaderStyled = styled.header`
     display: flex;
     gap: 5vw;
   }
-  header a {
+  header button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,6 +47,7 @@ const HeaderStyled = styled.header`
     margin-left: 10px;
     width: 10vw;
     text-align: center;
+    background-color: rgb(0, 0, 0, 0.3);
     :hover {
       font-weight: bold;
     }
@@ -113,13 +114,13 @@ function App() {
                 <header>
                   {sortButtons.map((sortButton, index) => {
                     return (
-                      <Link
+                      <button
                         to={`/sort/${sortButton}`}
                         onClick={getSortingFunction(sortButton)}
                         key={index}
                       >
                         {sortButton}
-                      </Link>
+                      </button>
                     );
                   })}
                 </header>
