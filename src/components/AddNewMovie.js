@@ -39,25 +39,27 @@ const NewMovieForm = styled.div`
   }
 `;
 
-const AddNewMovie = ({ setData }) => {
+const AddNewMovie = ({ setData, data }) => {
   const [newMovie, setNewMovie] = useState({
     title: "",
     director: "",
     year: "",
     rate: "",
-    genre: "",
+    genre: [],
   });
   const addNewMovie = (e) => {
     e.preventDefault();
-    const newMovieId = movies.length + 1;
-    const updateMovieList = [...movies, { ...newMovie, id: newMovieId }];
+    const newMovieId = data.length + 1;
+    const updateMovieList = [...data, newMovie];
+    updateMovieList.push(newMovie);
     setData(updateMovieList);
+    console.log(data);
     setNewMovie({
       title: "",
       director: "",
       year: "",
       rate: "",
-      genre: "",
+      genre: [],
     });
   };
 
@@ -89,6 +91,12 @@ const AddNewMovie = ({ setData }) => {
           placeholder="Rating"
           value={newMovie.rate}
           onChange={(e) => setNewMovie({ ...newMovie, rate: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Genre"
+          value={newMovie.genre}
+          onChange={(e) => setNewMovie({ ...newMovie, genre: e.target.value })}
         />
         <button onClick={addNewMovie} type="submit">
           Add Movie

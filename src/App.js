@@ -131,7 +131,7 @@ function App() {
         />
         <Route
           path="/addNewMovie"
-          element={<AddNewMovie setData={setData} />}
+          element={<AddNewMovie setData={setData} data={data} />}
         />
       </Routes>
     </AppStyled>
