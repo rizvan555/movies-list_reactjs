@@ -49,18 +49,28 @@ const AddNewMovie = ({ setData, data }) => {
   });
   const addNewMovie = (e) => {
     e.preventDefault();
-    const newMovieId = data.length + 1;
-    const updateMovieList = [...data, newMovie];
-    updateMovieList.push(newMovie);
-    setData(updateMovieList);
-    console.log(data);
+    const newMovieId = movies.length + 1;
+
+    const newMovieObject = {
+      id: newMovieId,
+      title: newMovie.title,
+      director: newMovie.director,
+      year: newMovie.year,
+      rate: newMovie.rate,
+      genre: newMovie.genre.split(",").map((gen) => gen.trim()),
+      //Bununla inputun icine yazdigimiz valueni "Arrayin icinde stringe" cevirib yukleyirik, Bunu yalniz o zaman edirsen ki, senin melumat gondereceyin bolum bir Array ve icinde strinqler olarsa
+    };
+    movies.push(newMovieObject);
+
+    setData([...data, newMovieObject]);
+
     setNewMovie({
       title: "",
       director: "",
       year: "",
       rate: "",
-      genre: [],
-    });
+      genre: "",
+    }); //Bunu melumati dataya gonderdikden sonra inputlarin icini bosaltmaq ucun yaziram
   };
 
   return (
